@@ -55,7 +55,7 @@ public class View {
         integrare.setText("intg");
         ControllerIntegrare controllerIntegrare= new ControllerIntegrare(this);
         integrare.addActionListener(controllerIntegrare);
-        frame.setPreferredSize (new Dimension (378, 470));
+        frame.setPreferredSize (new Dimension (370, 470));
         frame.setLayout (null);
         frame.add (label);
         frame.add (textField);

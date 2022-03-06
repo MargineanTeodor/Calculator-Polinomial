@@ -33,7 +33,6 @@ public class Operatii {
         C.sortare();
         return C;
     }
-
     public static Polinom scadere(Polinom A, Polinom B) {
         A.setVizitate();
         B.setVizitate();
@@ -68,7 +67,6 @@ public class Operatii {
         C.sortare();
         return C;
     }
-
     public static Polinom inmultire(Polinom A, Polinom B) {
         A.setVizitate();
         B.setVizitate();
@@ -116,7 +114,6 @@ public class Operatii {
         B.sortare();
         Polinom p;
         Polinom q;
-        Polinom z = new Polinom();
         if (A.getPoli().get(A.getPoli().size()-1).getPutere() >= B.getPoli().get(B.getPoli().size()-1).getPutere()) {
             p = A;
             q = B;
