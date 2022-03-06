@@ -26,5 +26,6 @@ public class ControllerScadere implements ActionListener {
         A=scadere(A,B);
         S=A.toString();
         view.setRezultat(S);
+        view.setRezultatCat("");
     }
 }

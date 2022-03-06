@@ -23,10 +23,7 @@ public class ControllerImpartire implements ActionListener {
         S=view.getPoli2();
         Polinom B=new Polinom();
         B=regex(S);
-        impartire(A,B);
-        S=A.toString();
-        view.setRezultat(S);
-        S=B.toString();
-        view.setRezultatCat(S);
+        view.setRezultat(impartire(A,B));
+        view.setRezultatCat("");
     }
 }

@@ -46,18 +46,19 @@ public class Operatii {
                     e2.setVizita(1);
                     Mn.setCoeficeient(e.getCoeficeient() - e2.getCoeficeient());
                     Mn.setPutere(e.getPutere());
-                    lista.add(Mn);
+                    if(Mn.getCoeficeient()!=0)
+                            lista.add(Mn);
                     Mn = new Monome(0, 0);
                 }
             }
         }
-        for (Monome e : A.getPoli()) {
+        for (Monome e : B.getPoli()) {
             if (e.getVizita() == 0) {
                 e.setCoeficeient(-1 * e.getCoeficeient());
                 lista.add(e);
             }
         }
-        for (Monome e : B.getPoli()) {
+        for (Monome e : A.getPoli()) {
             if (e.getVizita() == 0) {
                 e.setCoeficeient(e.getCoeficeient());
                 lista.add(e);
@@ -110,14 +111,13 @@ public class Operatii {
         C.sortare();
         return C;
     }
-
-    public static void impartire(Polinom A, Polinom B) {
+    public static String impartire(Polinom A, Polinom B) {
         A.sortare();
         B.sortare();
         Polinom p;
         Polinom q;
         Polinom z = new Polinom();
-        if (A.getPoli().get(0).getPutere() >= B.getPoli().get(0).getPutere()) {
+        if (A.getPoli().get(A.getPoli().size()-1).getPutere() >= B.getPoli().get(B.getPoli().size()-1).getPutere()) {
             p = A;
             q = B;
         } else {
@@ -128,20 +128,41 @@ public class Operatii {
         Monome mn2=new Monome(0,0);
         Monome mn3=new Monome (0,0);
         ArrayList<Monome> lista =  new ArrayList<>();
-        mn=p.getPoli().get(0);
-        mn2=q.getPoli().get(0);
+        ArrayList<Monome> listaf =  new ArrayList<>();
+        mn=p.getPoli().get(p.getPoli().size()-1);
+        mn2=q.getPoli().get(q.getPoli().size()-1);
         while(mn.getPutere()>mn2.getPutere() || (mn.getPutere()==mn2.getPutere() &&mn.getCoeficeient()>mn2.getCoeficeient()))
         {
             mn3.setCoeficeient(mn.getCoeficeient()/mn2.getCoeficeient());
             mn3.setPutere((mn.getPutere()-mn2.getPutere()));
             lista.add(mn3);
+            listaf.add(mn3);
             A=new Polinom(lista);
-            mn3=new Monome(0,0);
             B=inmultire(A,q);
             p=scadere(p,B);
+            mn=p.getPoli().get(p.getPoli().size()-1);
+            lista.remove(mn3);
+            mn3=new Monome(0,0);
         }
-        A=new Polinom(lista);
-        B=q;
+        if(mn.getPutere()==mn2.getPutere() )
+        {
+            mn3.setCoeficeient(mn.getCoeficeient()/mn2.getCoeficeient());
+            mn3.setPutere(0);
+            listaf.add(mn3);
+            lista.add(mn3);
+            A.setPoli(lista);
+            q=inmultire(q,A);
+            p=scadere(p,q);
+        }
+        lista=p.getPoli();
+        A.setPoli(listaf);
+        B.setPoli(lista);
+        A.sortare();
+        B.sortare();
+        if(B.toString().equals(""))
+            return "Cat:"+A.toString();
+        else
+            return "Cat:"+A.toString()+" Rest:"+B.toString();
     }
 }
 

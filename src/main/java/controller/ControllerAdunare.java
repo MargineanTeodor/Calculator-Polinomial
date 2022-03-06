@@ -26,5 +26,6 @@ public class ControllerAdunare implements ActionListener {
         A=adunare(A,B);
         S=A.toString();
         view.setRezultat(S);
+        view.setRezultatCat("");
     }
 }

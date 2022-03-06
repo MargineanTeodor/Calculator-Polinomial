@@ -26,5 +26,6 @@ public class ControllerInmultire implements ActionListener {
         A=inmultire(A,B);
         S=A.toString();
         view.setRezultat(S);
+        view.setRezultatCat("");
     }
 }
