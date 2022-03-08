@@ -102,6 +102,8 @@ public class Operatii {
         Monome Mn = new Monome(0, 0);
         for (Monome e : A.getPoli()) {
             Mn = new Monome(e.getCoeficeient() / (e.getPutere() + 1), e.getPutere() + 1);
+            if (Mn.getCoeficeient()==0)
+                Mn.setCoeficeient(1);
             lista.add(Mn);
             Mn = new Monome(0, 0);
         }
